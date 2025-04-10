@@ -25,9 +25,11 @@ const AutoCompleteInput = ({
     const delayDebounce = setTimeout(() => {
       const fetchSuggestions = async () => {
         if (inputValue.length > 2) {
-          const response = await fetch(
-            `https://api.github.com/search/repositories?q=${inputValue}&per_page=3`
-          );
+          const response = await fetch(`https://api.github.com/search/repositories?q=${inputValue}&per_page=5`, {
+            headers: {
+              Authorization: `token ${import.meta.env.VITE_GH_TOKEN}`,
+            },
+          });
           const data = await response.json();
           interface Repository {
             full_name: string;

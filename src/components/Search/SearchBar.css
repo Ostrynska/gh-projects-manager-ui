@@ -28,6 +28,11 @@
   gap: 5px;
 }
 
+.search-input {
+  border: 1px solid #000000;
+  border-radius: 4px;
+}
+
 .search-wrapper {
   position: relative;
   width: 480px;

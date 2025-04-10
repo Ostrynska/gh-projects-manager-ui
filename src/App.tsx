@@ -86,7 +86,11 @@ function App() {
   }
     try {
       const [owner, name] = path.split('/');
-      const response = await fetch(`https://api.github.com/repos/${owner}/${name}`);
+      const response = await fetch(`https://api.github.com/repos/${owner}/${name}`, {
+        headers: {
+          Authorization: `token ${import.meta.env.VITE_GH_TOKEN}`,
+        },
+      });
 
       if (!response.ok) {
         if (response.status === 404) {
@@ -117,7 +121,7 @@ function App() {
       setProjectsData(updatedData);
       setInput('');
 
-      await fetch('http://localhost:3001/api/save-projects', {
+      await fetch(`${apiUrl}/api/save-projects`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -132,7 +136,11 @@ function App() {
 
   const handleUpdate = async (repo: RepoData) => {
     try {
-      const response = await fetch(`https://api.github.com/repos/${repo.owner}/${repo.name}`);
+      const response = await fetch(`https://api.github.com/repos/${repo.owner}/${repo.name}`, {
+        headers: {
+          Authorization: `token ${import.meta.env.VITE_GH_TOKEN}`,
+        },
+      });
       const data = await response.json();
 
       const updatedRepo: RepoData = {

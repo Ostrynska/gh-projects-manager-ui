@@ -36,6 +36,7 @@ html {
 body {
   margin: 0 auto;
   background-image: url('./assets/pattern-randomized.svg');
+  background-color: #FFFFFF;
   height: 100vh;
   color: #000;
   font-family: Raleway, sans-serif;
