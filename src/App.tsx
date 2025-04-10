@@ -200,9 +200,9 @@ function App() {
           <SearchBar input={input} setInput={setInput} onAdd={() => fetchRepo(input)} />
         </div>
         <section>
-          <div className="container">
+          <div className="container projects-table-container">
             <div className='projects-table-wrapper'>
-            <h1>Projects</h1>
+            <h1 className='projects-title'>Projects</h1>
             {sortedProjects.length > 0 ? (
                   <ProjectsTable
                     projectsData={sortedProjects}
