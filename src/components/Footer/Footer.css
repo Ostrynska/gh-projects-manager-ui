@@ -1,0 +1,43 @@
+.footer {
+  border-top: 1px solid #ccc;
+  text-align: center;
+  margin-top: auto;
+  background-color: #fff;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-link > svg{
+  color: #000;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.footer-link:hover {
+  opacity: 1;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #000000;
+  margin: 0;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-socials > li{
+  color: #000;;
+}
