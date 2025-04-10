@@ -7,7 +7,7 @@
 }
 
 .breadcrumb {
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -43,23 +43,4 @@
   color: #000;
   pointer-events: none; 
   z-index: 111;
-}
-
-.search-input {
-  width: 100%;
-  padding: 0 0 0 1px;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  font-size: 14px;
-  color: #1e293b;
-  outline: none;
-  transition: border 0.2s ease;
-}
-
-.search-input:hover, .search-input:focus {
-  border: 1px solid #94a3b8;
-}
-
-.search-input::placeholder {
-  color: #94a3b8;
 }

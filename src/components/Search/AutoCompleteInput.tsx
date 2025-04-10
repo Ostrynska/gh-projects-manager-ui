@@ -5,7 +5,7 @@ interface AutoCompleteInputProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  className?: string;
+  setMenuOpen: (open: boolean) => void;
 }
 
 interface OptionType {
@@ -13,7 +13,12 @@ interface OptionType {
   value: string;
 }
 
-const AutoCompleteInput = ({ value, onChange, placeholder, className }: AutoCompleteInputProps) => {
+const AutoCompleteInput = ({
+  value,
+  onChange,
+  placeholder,
+  setMenuOpen,
+}: AutoCompleteInputProps) => {
   const [options, setOptions] = useState<OptionType[]>([]);
   const [inputValue, setInputValue] = useState(value);
 
@@ -21,16 +26,19 @@ const AutoCompleteInput = ({ value, onChange, placeholder, className }: AutoComp
     const delayDebounce = setTimeout(() => {
       const fetchSuggestions = async () => {
         if (inputValue.length > 2) {
-          const response = await fetch(`https://api.github.com/search/repositories?q=${inputValue}&per_page=5`);
+          const response = await fetch(
+            `https://api.github.com/search/repositories?q=${inputValue}&per_page=5`
+          );
           const data = await response.json();
           interface Repository {
             full_name: string;
           }
 
-          const repos = data.items?.map((repo: Repository) => ({
-            label: `${repo.full_name}`,
-            value: `${repo.full_name}`,
-          })) || [];
+          const repos =
+            data.items?.map((repo: Repository) => ({
+              label: `${repo.full_name}`,
+              value: `${repo.full_name}`,
+            })) || [];
           setOptions(repos);
         }
       };
@@ -42,16 +50,17 @@ const AutoCompleteInput = ({ value, onChange, placeholder, className }: AutoComp
 
   return (
     <Select
-      className={className}
       options={options}
       onInputChange={setInputValue}
       onChange={(option) => onChange(option?.value || "")}
+      onMenuOpen={() => setMenuOpen(true)}
+      onMenuClose={() => setMenuOpen(false)}
       placeholder={placeholder}
       value={value ? { label: value, value } : null}
       isClearable
       styles={{
         container: (base) => ({ ...base, flex: 1 }),
-        control: (base) => ({ ...base, border: "none", boxShadow: "none", minHeight: "36px" }),
+        control: (base) => ({ ...base, boxShadow: "none", minHeight: "36px" }),
         input: (base) => ({ ...base, margin: 0 }),
       }}
     />

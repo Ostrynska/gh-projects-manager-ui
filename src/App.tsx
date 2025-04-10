@@ -201,6 +201,7 @@ function App() {
         </div>
         <section>
           <div className="container">
+            <div className='projects-table-wrapper'>
             <h1>Projects</h1>
             {sortedProjects.length > 0 ? (
                   <ProjectsTable
@@ -221,6 +222,7 @@ function App() {
                   <p className="empty-state">You have no projects yet. Start by adding a GitHub repository above.
                   </p>
                 )}
+            </div>
           </div>
         </section>
       </main>
