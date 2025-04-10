@@ -1,6 +1,9 @@
 # 📁 GitHub Projects Manager UI
 
 A lightweight CRM system for managing public GitHub repositories, built with **React**, **TypeScript**, and a **custom backend** using **Node.js** and **SQLite**.
+![image](https://github.com/user-attachments/assets/b298313e-f138-43e2-ac77-881efecac309)
+![image](https://github.com/user-attachments/assets/802b2b31-2fdf-4bc6-b768-01e362354cca)
+
 
 🚩🚩🚩 Please note that the backend is hosted on a free server, so it's recommended to run it locally at http://localhost:3001 for better performance.
 Since this is a demo version, Congo auth is configured to work only on [localhost:5173](http://localhost:5173). Please make sure to run the project on this address.
