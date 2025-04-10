@@ -2,7 +2,10 @@
 
 A lightweight CRM system for managing public GitHub repositories, built with **React**, **TypeScript**, and a **custom backend** using **Node.js** and **SQLite**.
 
-🚩🚩🚩 Please note that the backend is hosted on a free server, so it's recommended to run it locally at http://localhost:3001 for better performance. 🚩🚩🚩 
+🚩🚩🚩 Please note that the backend is hosted on a free server, so it's recommended to run it locally at http://localhost:3001 for better performance.
+Since this is a demo version, Congo auth is configured to work only on [localhost:5173](http://localhost:5173). Please make sure to run the project on this address.
+Also, keep in mind that GitHub’s API has a request limit. To avoid issues, please add your own GitHub token to the .env file as VITE_GH_TOKEN.
+🚩🚩🚩 
 > Full backend source: [gh-projects-manager-api](https://github.com/Ostrynska/gh-projects-manager-api)
 
 🔐 Auth via Amazon Cognito | ⚙️ GitHub API integration | 🧠 Express + SQLite backend
