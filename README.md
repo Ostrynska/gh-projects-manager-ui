@@ -2,6 +2,9 @@
 
 A lightweight CRM system for managing public GitHub repositories, built with **React**, **TypeScript**, and a **custom backend** using **Node.js** and **SQLite**.
 
+🚩🚩🚩 Please note that the backend is hosted on a free server, so it's recommended to run it locally at http://localhost:3001 for better performance. 🚩🚩🚩 
+> Full backend source: [gh-projects-manager-api](https://github.com/Ostrynska/gh-projects-manager-api)
+
 🔐 Auth via Amazon Cognito | ⚙️ GitHub API integration | 🧠 Express + SQLite backend
 ![image](https://github.com/user-attachments/assets/0d1c55f6-8e3a-4927-9ee3-4d3ab5bcdb54)
 ![image](https://github.com/user-attachments/assets/8946e678-c32d-4670-bd9a-0a0906d1183f)
