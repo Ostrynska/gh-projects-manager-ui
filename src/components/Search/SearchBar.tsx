@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MdChevronRight } from "react-icons/md";
+import { FiSearch } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 import AutoCompleteInput from "./AutoCompleteInput";
@@ -35,20 +36,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ input, setInput, onAdd }) => {
       <div className="search-container">
         <div className="search-wrapper">
           {!isMenuOpen && input.trim() === '' && (
-            <svg
-              className="search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 18.5a7.5 7.5 0 006.15-3.85z"
-              />
-            </svg>
+            <FiSearch className="search-icon"/>
           )}
           <AutoCompleteInput
             placeholder="Facebook/React"
