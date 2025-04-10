@@ -110,7 +110,7 @@ function App() {
       setInput('');
 
       await fetch(`${apiUrl}/api/save-projects'`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: ID_EMAIL,
