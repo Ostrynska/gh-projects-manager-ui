@@ -12,7 +12,7 @@ const WelcomePage: React.FC<WelcomePageProps> = ({ onSignIn }) => {
     <>
       <main className="main">
         <section>
-          <div className="container welcome-wrapper">
+          <div className="welcome-container welcome-wrapper">
             <div className="welcome-content">
               <div className="welcome-text-block">
                 <h1 className="welcome-title">

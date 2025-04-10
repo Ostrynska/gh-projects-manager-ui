@@ -1,7 +1,7 @@
 table {
   border-spacing: 0;
   width: 100%;
-  max-width: 1460px;
+  max-width: 1170px;
 }
 
 th, td {
@@ -29,7 +29,7 @@ th, td {
 
 .projects-table-header > th {
     padding: 10px 0 10px 20px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
 }
 

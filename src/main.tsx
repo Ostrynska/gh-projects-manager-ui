@@ -16,7 +16,7 @@ const cognitoAuthConfig = {
   redirect_uri: `${REDIRECT_URI}`,
   response_type: "code",
   scope: "aws.cognito.signin.user.admin email openid phone profile",
-  onSigninCallback: (_user) => {
+  onSigninCallback: () => {
     window.history.replaceState({}, document.title, window.location.pathname);
   },
 };

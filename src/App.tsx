@@ -8,7 +8,7 @@ import Header from "./components/Header/Header";
 import SearchBar from './components/Search/SearchBar';
 import ProjectsTable from './components/Projects/ProjectsTable';
 
-import './App.css'
+import './App.css';
 
 type RepoData = {
   owner: string;
@@ -29,6 +29,7 @@ function App() {
   const [input, setInput] = useState('');
   const [sortKey, setSortKey] = useState<keyof RepoData | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [isLoadingTable, setIsLoadingTable] = useState(true);
 
   const sortedProjects = Object.values(projectsData).sort((a, b) => {
     if (!sortKey) return 0;
@@ -56,12 +57,13 @@ function App() {
     auth.removeUser();
     const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID;
     const logoutUri = import.meta.env.VITE_LOGOUT_URI;
-    const cognitoDomain = import.meta.env.VITE_COGNITO_DOMAIN;
+    const cognitoDomain = import.meta.env.VITE_DOMAIN;
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(logoutUri)}`;
   };
 
   const fetchUserProjects = async (email: string) => {
     try {
+      setIsLoadingTable(true);
       const res = await fetch(`${apiUrl}/api/user-projects?email=${email}`);
       const data = await res.json();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -70,9 +72,11 @@ function App() {
         return acc;
       }, {});
       setProjectsData(formatted);
-  } catch (err) {
+    } catch (err) {
       toast.error(`Failed to load projects: ${err instanceof Error ? err.message : String(err)}`);
-  }
+    } finally {
+      setIsLoadingTable(false);
+    }
   };
 
   const fetchRepo = async (path: string) => {
@@ -109,7 +113,7 @@ function App() {
       setProjectsData(updatedData);
       setInput('');
 
-      await fetch(`${apiUrl}/api/save-projects'`, {
+      await fetch(`${apiUrl}/api/save-projects`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -196,32 +200,33 @@ function App() {
     <>
       <Header user={auth.user?.profile.email || ""} onClick={async () => signOutRedirect()} />
       <main className="flexbox-col main">
-        <div className="container">
-          <SearchBar input={input} setInput={setInput} onAdd={() => fetchRepo(input)} />
-        </div>
         <section>
+          <div className="container">
+            <SearchBar input={input} setInput={setInput} onAdd={() => fetchRepo(input)} />
+          </div>
           <div className="container projects-table-container">
-            <div className='projects-table-wrapper'>
-            <h1 className='projects-title'>Projects</h1>
-            {sortedProjects.length > 0 ? (
-                  <ProjectsTable
-                    projectsData={sortedProjects}
-                    handleUpdate={handleUpdate}
-                    handleDelete={handleDelete}
-                    onSort={(key) => {
-                      if (sortKey === key) {
-                        setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-                      } else {
-                        setSortKey(key);
-                        setSortOrder("asc");
-                      }
-                    }}
-                    currentSort={{ key: sortKey, order: sortOrder }}
-                  />
-                ) : (
-                  <p className="empty-state">You have no projects yet. Start by adding a GitHub repository above.
-                  </p>
-                )}
+            <div className="projects-table-wrapper">
+              <h1 className="projects-title">Projects</h1>
+              {isLoadingTable ? (
+                <p className="empty-state">Loading...</p>
+              ) : sortedProjects.length > 0 ? (
+                <ProjectsTable
+                  projectsData={sortedProjects}
+                  handleUpdate={handleUpdate}
+                  handleDelete={handleDelete}
+                  onSort={(key) => {
+                    if (sortKey === key) {
+                      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+                    } else {
+                      setSortKey(key);
+                      setSortOrder("asc");
+                    }
+                  }}
+                  currentSort={{ key: sortKey, order: sortOrder }}
+                />
+              ) : (
+                <p className="empty-state">You have no projects yet. Start by adding a GitHub repository above.</p>
+              )}
             </div>
           </div>
         </section>
@@ -237,9 +242,10 @@ function App() {
         draggable
         pauseOnHover
         theme="dark"
-        transition={Bounce} />
+        transition={Bounce}
+      />
     </>
-  )
+  );
 }
 
 export default App;
