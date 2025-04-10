@@ -1,0 +1,22 @@
+.main {
+    margin: 0 0 0 5em;
+    height: 100vh;
+}
+
+.main > p {
+    width: 80%;
+    max-width: 80%;
+}
+
+.flexbox-col {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.empty-state {
+  margin-top: 40px;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
