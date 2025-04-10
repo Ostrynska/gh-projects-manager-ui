@@ -1,5 +1,7 @@
 # 📁 GitHub Projects Manager UI
 
+🎬 DEMO - https://drive.google.com/file/d/1dbluzNh6tGRxcUD7fqUOkMS8J-ZpaU3h/view?usp=sharing
+
 A lightweight CRM system for managing public GitHub repositories, built with **React**, **TypeScript**, and a **custom backend** using **Node.js** and **SQLite**.
 ![image](https://github.com/user-attachments/assets/b298313e-f138-43e2-ac77-881efecac309)
 ![image](https://github.com/user-attachments/assets/802b2b31-2fdf-4bc6-b768-01e362354cca)
