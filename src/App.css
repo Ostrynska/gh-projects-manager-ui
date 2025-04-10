@@ -23,6 +23,7 @@
 
 .projects-table-container {
   padding-top: 0;
+  z-index: 1;
 }
 
 .projects-table-wrapper {

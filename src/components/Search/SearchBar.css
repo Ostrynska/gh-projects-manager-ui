@@ -31,6 +31,7 @@
 .search-wrapper {
   position: relative;
   width: 480px;
+  z-index: 50;
 }
 
 .search-icon {
@@ -44,3 +45,4 @@
   pointer-events: none; 
   z-index: 111;
 }
+

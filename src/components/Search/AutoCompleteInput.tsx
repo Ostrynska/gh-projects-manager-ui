@@ -5,7 +5,7 @@ interface AutoCompleteInputProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  setMenuOpen: (open: boolean) => void;
+  className?: string;
 }
 
 interface OptionType {
@@ -16,8 +16,7 @@ interface OptionType {
 const AutoCompleteInput = ({
   value,
   onChange,
-  placeholder,
-  setMenuOpen,
+  placeholder, className
 }: AutoCompleteInputProps) => {
   const [options, setOptions] = useState<OptionType[]>([]);
   const [inputValue, setInputValue] = useState(value);
@@ -27,7 +26,7 @@ const AutoCompleteInput = ({
       const fetchSuggestions = async () => {
         if (inputValue.length > 2) {
           const response = await fetch(
-            `https://api.github.com/search/repositories?q=${inputValue}&per_page=5`
+            `https://api.github.com/search/repositories?q=${inputValue}&per_page=3`
           );
           const data = await response.json();
           interface Repository {
@@ -50,18 +49,19 @@ const AutoCompleteInput = ({
 
   return (
     <Select
+      className={className}
       options={options}
       onInputChange={setInputValue}
       onChange={(option) => onChange(option?.value || "")}
-      onMenuOpen={() => setMenuOpen(true)}
-      onMenuClose={() => setMenuOpen(false)}
       placeholder={placeholder}
       value={value ? { label: value, value } : null}
       isClearable
       styles={{
-        container: (base) => ({ ...base, flex: 1 }),
-        control: (base) => ({ ...base, boxShadow: "none", minHeight: "36px" }),
-        input: (base) => ({ ...base, margin: 0 }),
+        container: (base) => ({ ...base, flex: 1, zIndex: 10000 }),
+        control: (base) => ({ ...base, boxShadow: "none", minHeight: "36px", zIndex: 100000 }),
+        input: (base) => ({ ...base, margin: 0, zIndex: 100 }),
+        menu: (base) => ({ ...base, fontSize: "14px", zIndex: 10000 }),
+        option: (base) => ({ ...base, fontSize: "14px", padding: "4px 12px" }),
       }}
     />
   );

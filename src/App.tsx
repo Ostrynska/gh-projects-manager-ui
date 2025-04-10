@@ -79,7 +79,11 @@ function App() {
     }
   };
 
-  const fetchRepo = async (path: string) => {
+  const fetchRepo = async (path: string) =>{
+    if (projectsData[path]) {
+    toast.warn("This repository is already in your table.");
+    return;
+  }
     try {
       const [owner, name] = path.split('/');
       const response = await fetch(`https://api.github.com/repos/${owner}/${name}`);
@@ -113,7 +117,7 @@ function App() {
       setProjectsData(updatedData);
       setInput('');
 
-      await fetch(`${apiUrl}/api/save-projects`, {
+      await fetch('http://localhost:3001/api/save-projects', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
